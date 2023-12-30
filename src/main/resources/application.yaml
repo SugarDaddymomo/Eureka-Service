@@ -1,0 +1,41 @@
+server:
+  port: 8761
+
+
+eureka:
+  instance:
+    hostname: localhost
+#    status-page-url-path: ${server.servletPath}/info
+#    health-check-url-path: ${server.servletPath}/health
+#  server:
+
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+#    healthcheck:
+#      enabled: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+
+spring:
+  freemarker:
+    template-loader-path:
+      classpath: /templates/
+    prefer-file-system-access: false
+  application:
+    name: Test Service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/testdb
+    username: ashu
+    password: p@ssword
+    hikari:
+      auto-commit: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: true
